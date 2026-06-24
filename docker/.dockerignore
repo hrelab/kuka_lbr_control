@@ -1,3 +1,5 @@
+# Docker uses docker/Dockerfile.dockerignore for this Compose build because the
+# build context is the repository root.
 .git
 .github
 build

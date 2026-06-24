@@ -1,0 +1,9 @@
+.git
+.github
+build
+install
+log
+**/build
+**/install
+**/log
+docker/.DS_Store

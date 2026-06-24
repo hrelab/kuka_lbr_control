@@ -6,10 +6,17 @@ This folder contains a ROS 2 Jazzy container setup for the workspace.
 
 ```bash
 cd docker
-docker compose up --build
+USER_UID=$(id -u) USER_GID=$(id -g) docker compose up --build
 ```
 
-The compose file mounts the repository into `/workspaces/kuka_lbr_control`, sources ROS on startup, and keeps the container interactive.
+The compose file mounts the repository into `/workspaces/kuka_lbr_control`, sources ROS on startup, and keeps the container interactive. The build args create the container user with the same name, UID, and GID as your host user so files written in the bind mount stay owned by you.
+
+For repeated use, the helper script exports the host identity before calling Docker Compose:
+
+```bash
+cd docker
+./compose-host-user.sh up --build
+```
 
 ## Inside the container
 

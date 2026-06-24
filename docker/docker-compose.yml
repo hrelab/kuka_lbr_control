@@ -5,6 +5,9 @@ services:
       dockerfile: docker/Dockerfile
       args:
         ROS_DISTRO: jazzy
+        USERNAME: ${USER:-ros}
+        USER_UID: ${USER_UID:-1000}
+        USER_GID: ${USER_GID:-1000}
     image: kuka_lbr_control:jazzy
     container_name: kuka_lbr_control_jazzy
     environment:
