@@ -22,7 +22,7 @@ cd docker
 
 ```bash
 git submodule update --init --recursive
-colcon build --symlink-install
+colcon build --symlink-install --continue-on-error
 source install/setup.bash
 ros2 launch kuka_control <launch_file>.py
 ```
