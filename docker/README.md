@@ -1,6 +1,6 @@
 # Docker
 
-This folder contains a ROS 2 Humble container setup for the workspace.
+This folder contains a ROS 2 Jazzy container setup for the workspace.
 
 ## Build and start
 

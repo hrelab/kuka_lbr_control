@@ -6,8 +6,8 @@ services:
       args:
         USER_NAME: ${USER:-ros}
         USER_UID: ${USER_UID:-1000}
-    image: kuka_lbr_control:humble
-    container_name: kuka_lbr_control_humble
+    image: kuka_lbr_control:jazzy
+    container_name: kuka_lbr_control_jazzy
     environment:
       DISPLAY: ${DISPLAY}
       QT_X11_NO_MITSHM: "1"
