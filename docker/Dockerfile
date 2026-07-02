@@ -10,7 +10,12 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
  && rm -rf /var/lib/apt/lists/*
 
-RUN groupadd --gid ${USER_UID} ${USER_NAME} && useradd --no-log-init -r --uid ${USER_UID} --gid ${USER_UID} ${USER_NAME}
+RUN if ! getent group "${USER_UID}" >/dev/null 2>&1; then \
+            groupadd --gid ${USER_UID} ${USER_NAME}; \
+        fi && \
+        if ! getent passwd "${USER_UID}" >/dev/null 2>&1; then \
+            useradd --no-log-init -r --uid ${USER_UID} --gid ${USER_UID} ${USER_NAME}; \
+        fi
 
 COPY docker/entrypoint.bash /entrypoint.bash
 RUN chmod +x /entrypoint.bash
