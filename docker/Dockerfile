@@ -7,6 +7,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV WORKSPACE=/workspaces/kuka_lbr_control
 
 RUN apt-get update && apt-get install -y \
+    sudo \
     python3-pip \
  && rm -rf /var/lib/apt/lists/*
 
@@ -30,6 +31,9 @@ RUN set -eux; \
     else \
         useradd --no-log-init -r --uid "${USER_UID}" --gid "${USER_UID}" --create-home --home-dir "/home/${USER_NAME}" --shell /bin/bash "${USER_NAME}"; \
     fi; \
+    usermod -aG sudo "${USER_NAME}"; \
+    echo "${USER_NAME} ALL=(ALL) NOPASSWD:ALL" >/etc/sudoers.d/"${USER_NAME}"; \
+    chmod 0440 /etc/sudoers.d/"${USER_NAME}"; \
     mkdir -p "/home/${USER_NAME}"; \
     chown -R "${USER_UID}:${USER_UID}" "/home/${USER_NAME}"
 
