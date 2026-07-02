@@ -102,6 +102,7 @@ COPY docker/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 WORKDIR ${WORKSPACE}
+RUN git submodule update --init --recursive
 
 ENV HOME=/home/${USERNAME}
 ENV USER=${USERNAME}
